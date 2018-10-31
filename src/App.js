@@ -1,26 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+
+import "./App.css";
+import students from "./students.json";
+import Student from "./components/student";
+import SearchBar from "./components/navbar/SearchBar";
 
 class App extends Component {
+  state = {};
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+      <>
+        <header>
+          {/* Search bar  */}
+          <SearchBar />
+          <nav />
+          <br />
         </header>
-      </div>
+        <main>
+          {/* displaying students */}
+          <div className="card-wrapper">
+            {/* Cards */}
+            {students.map(student => (
+              <Student student={student} key={student.name} />
+            ))}
+          </div>
+        </main>
+        <footer>
+          <h1>footer</h1>
+        </footer>
+      </>
     );
   }
 }
