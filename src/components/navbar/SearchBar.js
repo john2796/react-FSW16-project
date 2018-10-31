@@ -9,7 +9,6 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 import { withStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-import students from "../../students.json";
 
 const styles = theme => ({
   root: {
@@ -71,19 +70,11 @@ const styles = theme => ({
   }
 }); // styling Ends here
 
+//hoc
+
 class SearchBar extends Component {
-  state = {
-    people: students,
-    poetFilter: ""
-  };
-
-  handleChange = e => {
-    this.setState({ poetFilter: e.target.value });
-  };
-
   render() {
-    const { people, poetFilter } = this.state;
-    const { classes } = this.props;
+    const { classes, term } = this.props;
 
     return (
       <div className={classes.root}>
@@ -110,15 +101,17 @@ class SearchBar extends Component {
                 <SearchIcon />
               </div>
               {/* Input Search */}
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput
-                }}
-                onChange={this.handleChange}
-                value={poetFilter}
-              />
+              <form>
+                <InputBase
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput
+                  }}
+                  onChange={this.props.searchHandler}
+                  value={term}
+                />
+              </form>
             </div>
           </Toolbar>
         </AppBar>

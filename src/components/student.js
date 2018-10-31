@@ -19,8 +19,6 @@ const styles = {
 
 const student = props => {
   const { classes, student } = props;
-
-  console.log(props.students);
   return (
     <Card className={classes.card}>
       <CardActionArea>
